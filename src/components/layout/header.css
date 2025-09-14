@@ -1,0 +1,40 @@
+/* Reset mặc định */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header màu đen */
+header {
+  background: #000;
+  padding: 15px 0;
+}
+
+/* Menu */
+.nav-list {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+/* Link trong menu */
+.nav-list li a {
+  text-decoration: none;
+  color: #f39c12; /* màu cam */
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Hover đổi sang trắng */
+.nav-list li a:hover {
+  color: #fff;
+  border-bottom: 2px solid #f39c12;
+  padding-bottom: 3px;
+}

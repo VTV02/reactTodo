@@ -7,7 +7,10 @@ import ToDoData from "./components/todo/ToDoData";
 import TodoNew from "./components/todo/ToDoNew";
 
 import reactLogo from "./assets/react.svg";
+import reactOrange from "./assets/react_orange.png";
 import { useState } from "react";
+import Header from "./components/layout/header";
+import Footer from "./components/layout/footer";
 function randomIntFromInterval(min, max) {
   // min and max included
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -28,18 +31,22 @@ function App() {
     setTodoList(todo);
   };
   return (
-    <div className="d-flex flex-column align-items-center mt-3">
-      <h1 className="text-success">To Do List</h1>
-      <TodoNew addNewTodo={addNewTodo} />
+    <>
+      <Header />
+      <div className="d-flex flex-column align-items-center mt-3">
+        <h1 className="text-warning">To Do List</h1>
+        <TodoNew addNewTodo={addNewTodo} />
 
-      {todoList.length <= 0 ? (
-        <div className="todo-logo">
-          <img src={reactLogo} alt="" className="logo" />
-        </div>
-      ) : (
-        <ToDoData todo={todoList} deleteTodo={deleteTodo} />
-      )}
-    </div>
+        {todoList.length <= 0 ? (
+          <div className="todo-logo">
+            <img src={reactOrange} alt="" className="logo" />
+          </div>
+        ) : (
+          <ToDoData todo={todoList} deleteTodo={deleteTodo} />
+        )}
+      </div>
+      <Footer />
+    </>
   );
 }
 

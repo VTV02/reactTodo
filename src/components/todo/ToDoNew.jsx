@@ -17,7 +17,7 @@ const TodoNew = (props) => {
     <div className="d-flex w-50 mt-3">
       <input
         type="text"
-        className="form-control"
+        className="form-control custom-input"
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         placeholder="Add your tasks"
@@ -25,14 +25,11 @@ const TodoNew = (props) => {
       />
       <button
         type="button"
-        className="btn btn-outline-primary ms-3"
+        className="btn btn-outline-warning ms-3"
         style={{ cursor: "pointer" }}
         onClick={clickHandle}>
         Add
       </button>
-      <div className="ms-2 text-warning">
-        <strong>My text input is: {inputValue}</strong>
-      </div>
     </div>
   );
 };

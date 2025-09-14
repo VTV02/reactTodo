@@ -34,3 +34,17 @@
 .read-the-docs {
   color: #888;
 }
+
+/* Input có viền cam */
+.custom-input {
+  background-color:#f39c12; /* nền đen */
+  border: 2px solid #333; /* viền cam */
+  color: #fff;
+}
+
+.custom-input:focus {
+  background-color: #ff9800;
+  border-color: #000; /* cam sáng hơn khi focus */
+  box-shadow: 0 0 8px #f39c12;
+  color: #fff;
+}

@@ -1,0 +1,20 @@
+/* Footer */
+.footer {
+  background-color: #000; /* nền đen */
+  border-top: 2px solid #f39c12; /* viền cam */
+}
+
+.footer p {
+  color: #f39c12; /* chữ cam */
+}
+
+.footer-links a {
+  color: #f39c12;
+  text-decoration: none;
+  margin: 0 10px;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #fff; /* hover đổi sang trắng */
+}

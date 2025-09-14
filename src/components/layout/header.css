@@ -38,3 +38,17 @@ header {
   border-bottom: 2px solid #f39c12;
   padding-bottom: 3px;
 }
+
+/* Active link */
+.nav-list li a.active {
+  color: #fff; /* chữ trắng */
+  border-bottom: 2px solid #f39c12; /* gạch cam */
+  padding-bottom: 3px;
+}
+
+/* Active link */
+.nav-list li a.active {
+  color: #fff; /* chữ trắng */
+  border-bottom: 2px solid #f39c12; /* gạch cam */
+  padding-bottom: 3px;
+}

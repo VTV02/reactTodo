@@ -8,16 +8,16 @@ const Footer = () => {
         </p>
         <ul className="footer-links list-inline">
           <li className="list-inline-item">
-            <a href="#">Trang chủ</a>
+            <a href="#">Home</a>
           </li>
           <li className="list-inline-item">
-            <a href="#">Giới thiệu</a>
+            <a href="#">About</a>
           </li>
           <li className="list-inline-item">
-            <a href="#">Dịch vụ</a>
+            <a href="#">Services</a>
           </li>
           <li className="list-inline-item">
-            <a href="#">Liên hệ</a>
+            <a href="#">Contact</a>
           </li>
         </ul>
       </div>

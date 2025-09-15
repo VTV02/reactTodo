@@ -37,7 +37,7 @@
 
 /* Input có viền cam */
 .custom-input {
-  background-color:#f39c12; /* nền đen */
+  background-color: #f39c12; /* nền đen */
   border: 2px solid #333; /* viền cam */
   color: #fff;
 }
@@ -47,4 +47,8 @@
   border-color: #000; /* cam sáng hơn khi focus */
   box-shadow: 0 0 8px #f39c12;
   color: #fff;
+}
+
+.custom-input::placeholder {
+  color: white;
 }

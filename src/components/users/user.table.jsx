@@ -9,19 +9,19 @@ const UserTable = () => {
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Age",
-      dataIndex: "age",
-      key: "age",
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
     },
     {
-      title: "Address",
-      dataIndex: "address",
-      key: "address",
+      title: "Password",
+      dataIndex: "password",
+      key: "password",
     },
     {
-      title: "Tags",
-      key: "tags",
-      dataIndex: "tags",
+      title: "Phone",
+      key: "phone",
+      dataIndex: "phone",
       render: (_, { tags }) => (
         <>
           {tags.map((tag) => {
@@ -53,7 +53,7 @@ const UserTable = () => {
   const data = [
     {
       key: "1",
-      name: "John Brown",
+      name: "",
       age: 32,
       address: "New York No. 1 Lake Park",
       tags: ["nice", "developer"],

@@ -14,7 +14,7 @@ const TodoNew = (props) => {
   };
 
   return (
-    <div className="d-flex w-50 mt-3">
+    <div className="d-flex w-50 mt-3 ">
       <input
         type="text"
         className="form-control custom-input"

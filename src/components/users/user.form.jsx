@@ -2,12 +2,19 @@ import { Input, Button, notification, Modal } from "antd";
 import { useState } from "react";
 import { createUserAPI, fetchAllUserAPI } from "../../services/api.service";
 
-const UserForm = () => {
+const UserForm = (props) => {
+  const { loadUser } = props;
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const resetAndCloseModal = () => {
+    setFullName("");
+    setEmail("");
+    setPassword("");
+    setPhone("");
+  };
   const handleSubmit = async () => {
     const res = await createUserAPI(fullName, email, password, phone);
     if (res.data) {
@@ -16,7 +23,8 @@ const UserForm = () => {
         description: "Created user successfully",
       });
     }
-    console.log("check data: ", res.data);
+    await loadUser();
+    resetAndCloseModal();
   };
 
   return (
@@ -35,6 +43,7 @@ const UserForm = () => {
             open={isModalOpen}
             onOk={() => {
               handleSubmit();
+
               setIsModalOpen(false);
             }}
             onCancel={() => {

@@ -5,18 +5,20 @@ import { useState } from "react";
 import UpdateModalUser from "./update.user.modal";
 import ViewUserDetail from "./view.user.detail";
 import { deleteUserAPI } from "../../services/api.service";
+import { use } from "react";
 const UserTable = (props) => {
   const { dataUsers, loadUser } = props;
   const [isModalUpdate, setModalUpdate] = useState(false);
   const [dataUpdate, setDataUpdate] = useState({});
   const [dataDetail, setDataDetail] = useState(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [deleteUser, setDeleteUser] = useState({});
   const handleDeleteUser = async (id) => {
     const res = await deleteUserAPI(id);
     if (res.data) {
       notification.success({
         message: "Deleted user",
-        description: "Deleted user successfully",
+        description: "You đã mắc sai lầm rồi!",
       });
       await loadUser();
     }
@@ -30,6 +32,7 @@ const UserTable = (props) => {
           <a
             href="#!"
             onClick={() => {
+              setDataDetail(record);
               setDataDetail(record);
               setIsDetailOpen(true);
             }}>
@@ -68,6 +71,10 @@ const UserTable = (props) => {
           </a>
           <Popconfirm
             title="Chắc chưa ní?"
+            description="Định mệnh, xoá rồi lấy gì test?"
+            placement="left"
+            okText="Kệ"
+            cancelText="Không dám"
             onConfirm={() => handleDeleteUser(record._id)}>
             <a className="ms-5 text-danger">
               <DeleteOutlined />

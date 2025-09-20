@@ -1,5 +1,7 @@
 import UserForm from "../components/users/user.form";
 import UserTable from "../components/users/user.table";
+import ViewUserDetail from "../components/users/view.user.detail";
+
 import { useEffect, useState } from "react";
 import { fetchAllUserAPI } from "../services/api.service";
 const UsersPage = () => {
@@ -11,13 +13,13 @@ const UsersPage = () => {
   }, []);
   const loadUser = async () => {
     const res = await fetchAllUserAPI();
-
     setDataUsers(res.data);
   };
   return (
     <div>
       <UserForm loadUser={loadUser} />
       <UserTable dataUsers={dataUsers} loadUser={loadUser} />
+      <ViewUserDetail dataUsers={dataUsers} loadUser={loadUser} />
     </div>
   );
 };

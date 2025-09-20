@@ -1,18 +1,41 @@
-import { Table, Popconfirm } from "antd";
+import { Table, Popconfirm, notification } from "antd";
 
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import UpdateModalUser from "./update.user.modal";
+import ViewUserDetail from "./view.user.detail";
+import { deleteUserAPI } from "../../services/api.service";
 const UserTable = (props) => {
   const { dataUsers, loadUser } = props;
   const [isModalUpdate, setModalUpdate] = useState(false);
   const [dataUpdate, setDataUpdate] = useState({});
+  const [dataDetail, setDataDetail] = useState(null);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const handleDeleteUser = async (id) => {
+    const res = await deleteUserAPI(id);
+    if (res.data) {
+      notification.success({
+        message: "Deleted user",
+        description: "Deleted user successfully",
+      });
+      await loadUser();
+    }
+  };
   const columns = [
     {
       title: "Id",
       dataIndex: "_id",
       render: (_, record) => {
-        return <a href="#!">{record._id}</a>;
+        return (
+          <a
+            href="#!"
+            onClick={() => {
+              setDataDetail(record);
+              setIsDetailOpen(true);
+            }}>
+            {record._id}
+          </a>
+        );
       },
     },
     {
@@ -37,16 +60,15 @@ const UserTable = (props) => {
             <EditOutlined
               onClick={() => {
                 setDataUpdate(record);
-
                 setModalUpdate(true);
               }}
             />
             {record.name}
           </a>
           <Popconfirm
-            title="Sure to delete?"
-            onConfirm={() => handleDelete(record.key)}>
-            <a className="ms-5">
+            title="Chắc chưa ní?"
+            onConfirm={() => handleDeleteUser(record._id)}>
+            <a className="ms-5 text-danger">
               <DeleteOutlined />
             </a>
           </Popconfirm>
@@ -64,6 +86,12 @@ const UserTable = (props) => {
         dataUpdate={dataUpdate}
         setDataUpdate={setDataUpdate}
         loadUser={loadUser}
+      />
+      <ViewUserDetail
+        dataDetail={dataDetail}
+        setDataDetail={setDataDetail}
+        isDetailOpen={isDetailOpen}
+        setIsDetailOpen={setIsDetailOpen}
       />
     </>
   );

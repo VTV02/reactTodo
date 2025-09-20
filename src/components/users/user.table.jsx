@@ -3,14 +3,19 @@ import { Table, Popconfirm } from "antd";
 import { EditOutlined, DeleteOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import UpdateModalUser from "./update.user.modal";
-import { redirect } from "react-router-dom";
 const UserTable = (props) => {
+  // dataUsers được truyền từ page cha users xuống
   const { dataUsers } = props;
+  // thực hiện tạo state để lưu trạng thái edit  modal
   const [isModalUpdate, setModalUpdate] = useState(false);
+  // tạo state để thực hiện lấy data từ modal
+  const [dataUpdate, setDataUpdate] = useState({});
+
   const columns = [
     {
       title: "Id",
       dataIndex: "_id",
+      // render lại dữ liệu, record đóng vai trò như một object ta có thể truy cập được các thành phần trong đó
       render: (_, record) => {
         return <a href="#!">{record._id}</a>;
       },
@@ -31,17 +36,22 @@ const UserTable = (props) => {
     {
       title: "Action",
       key: "action",
+      // render lại dữ liệu, tương ứng với action được thực hiện
       render: (_, record) => (
         <>
           <a className="text-warning">
+            {/* edit button khi nhấn vào thì thực hiện */}
             <EditOutlined
+              // thực hiện setDataUpdate bằng record tương ứng
               onClick={() => {
-                console.log(">>>Check record: ", record);
+                setDataUpdate(record);
+                // thực hiện set trạng thái update là true để mở modal lên khi nhấn edit
                 setModalUpdate(true);
               }}
             />
             {record.name}
           </a>
+          {/* tương tự thì ta cũng có event tương ứng với delete */}
           <Popconfirm
             title="Sure to delete?"
             onConfirm={() => handleDelete(record.key)}>
@@ -53,14 +63,16 @@ const UserTable = (props) => {
       ),
     },
   ];
-
-  console.log(">>>Run render...");
+  console.log(">>>Check data update: ", dataUpdate);
   return (
     <>
       <Table columns={columns} dataSource={dataUsers} rowKey={"_id"} />
       <UpdateModalUser
+        // thực hiện truyền sự kiện này qua các component khác
         setModalUpdate={setModalUpdate}
         isModalUpdate={isModalUpdate}
+        dataUpdate={dataUpdate}
+        setDataUpdate={setDataUpdate}
       />
     </>
   );

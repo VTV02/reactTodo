@@ -1,18 +1,24 @@
 import { Input, notification, Modal } from "antd";
 import { createUserAPI } from "../../services/api.service";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const UpdateModalUser = (props) => {
+  const [id, setId] = useState("");
   const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const { isModalUpdate, setModalUpdate } = props;
-
+  const { isModalUpdate, setModalUpdate, dataUpdate, setDataUpdate } = props;
+  useEffect(() => {
+    console.log(">>>Check dataUpdate: ", dataUpdate);
+    if (dataUpdate) {
+      setId(dataUpdate._id);
+      setFullName(dataUpdate.fullName);
+      setPhone(dataUpdate.phone);
+    }
+  }, [dataUpdate]);
   const resetAndCloseModal = () => {
+    setModalUpdate(false);
+    setId("");
     setFullName("");
-    setEmail("");
-    setPassword("");
     setPhone("");
   };
   const handleSubmit = async () => {
@@ -26,6 +32,7 @@ const UpdateModalUser = (props) => {
     await loadUser();
     resetAndCloseModal();
   };
+  useEffect(() => {}, [dataUpdate]);
 
   return (
     <Modal
@@ -44,27 +51,15 @@ const UpdateModalUser = (props) => {
       okText="Update">
       <div>
         <div>
+          <span>Id</span>
+          <Input value={id} disabled={true} />
+        </div>
+        <div>
           <span>Full Name</span>
           <Input
             value={fullName}
             onChange={(event) => {
               setFullName(event.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <span>Email</span>
-          <Input
-            onChange={(event) => {
-              setEmail(event.target.value);
-            }}
-          />
-        </div>
-        <div>
-          <span>Password</span>
-          <Input.Password
-            onChange={(event) => {
-              setPassword(event.target.value);
             }}
           />
         </div>

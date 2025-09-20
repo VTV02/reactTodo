@@ -8,6 +8,7 @@ const UserForm = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
+  // state cập nhật trạng thái mở của modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const resetAndCloseModal = () => {
     setFullName("");
@@ -15,15 +16,19 @@ const UserForm = (props) => {
     setPassword("");
     setPhone("");
   };
+  // lấy dữ liệu từ form và tạo user theo đúng form
   const handleSubmit = async () => {
     const res = await createUserAPI(fullName, email, password, phone);
+    // thực hiện, thông báo nếu user được tạo thành công
     if (res.data) {
       notification.success({
         message: "Created user",
         description: "Created user successfully",
       });
     }
+    // thực hiện load user khi đã tạo thành công
     await loadUser();
+    // đóng và reset các ô trong form
     resetAndCloseModal();
   };
 
@@ -34,21 +39,26 @@ const UserForm = (props) => {
         className="ms-3 me-3">
         <div className="d-flex justify-content-between align-items-center">
           <h3 className="text-warning">Table Users</h3>
+          {/* Khi nhấn Create new user thì ta set cho trạng thái là true */}
           <Button type="primary" onClick={() => setIsModalOpen(true)}>
             Create new user
           </Button>
           <Modal
             title="Create User"
             closable={{ "aria-label": "Custom Close Button" }}
+            // đặt vô open là trạng thái mới được cập nhật
             open={isModalOpen}
+            // khi nhấn ok thì thực hiện hàm handleSubmit
             onOk={() => {
               handleSubmit();
-
+              // cập nhật lại trạng thái là false thì sẽ tắt modal
               setIsModalOpen(false);
             }}
+            // nhấn cancel thì nó cũng set trạng thái là false
             onCancel={() => {
               setIsModalOpen(false);
             }}
+            // tắt nhấn ra ngoài để tắt modal
             maskClosable={false}
             okText="Add">
             <div>
@@ -56,7 +66,9 @@ const UserForm = (props) => {
                 <span>Full Name</span>
                 <Input
                   value={fullName}
+                  // hàm onChange sẽ cho ta biến là event khi điền vô đó thì sẽ lấy được value
                   onChange={(event) => {
+                    // cập nhật vô trạng thái setFullName
                     setFullName(event.target.value);
                   }}
                 />

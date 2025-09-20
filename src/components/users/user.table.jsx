@@ -54,6 +54,7 @@ const UserTable = (props) => {
     {
       title: "Action",
       key: "action",
+      // render lại dữ liệu, tương ứng với action được thực hiện
       render: (_, record) => (
         <>
           <a className="text-warning">
@@ -76,7 +77,6 @@ const UserTable = (props) => {
       ),
     },
   ];
-
   return (
     <>
       <Table columns={columns} dataSource={dataUsers} rowKey={"_id"} />

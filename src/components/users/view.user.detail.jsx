@@ -1,28 +1,93 @@
 import { Drawer } from "antd";
 
 const ViewUserDetail = (props) => {
+  // nhận props từ thằng cha của nó
   const { dataDetail, setDataDetail, isDetailOpen, setIsDetailOpen } = props;
 
   return (
     <>
       <Drawer
+        width={"40vw"}
         title="User Detail"
         closable={{ "aria-label": "Close Button" }}
         onClose={() => {
+          // khi nó đóng thì thực hiện set data detail null
           setDataDetail(null);
+          // detail open false
           setIsDetailOpen(false);
         }}
         open={isDetailOpen}>
         {dataDetail ? (
           <>
-            <p>Id: {dataDetail._id}</p>
+            <p>
+              <strong>Id:</strong> {dataDetail._id}
+            </p>
             <br />
-            <p>Full name: {dataDetail.fullName}</p>
+            <p>
+              <strong>Full name:</strong> {dataDetail.fullName}
+            </p>
             <br />
-            <p>Email: {dataDetail.email}</p>
+            <p>
+              <strong>Email:</strong> {dataDetail.email}
+            </p>
             <br />
-            <p>Phone: {dataDetail.phone}</p>
+            <p>
+              <strong>Phone:</strong> {dataDetail.phone}
+            </p>
             <br />
+            <p>
+              <strong>Avatar:</strong>
+            </p>
+            <div
+              style={{
+                marginTop: "10px",
+                height: "120px",
+                width: "120px",
+                border: "2px dashed #00bfff", // viền xanh da trời
+                borderRadius: "12px", // bo góc
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "#f9f9f9", // nền sáng
+                overflow: "hidden",
+                boxShadow: "0 2px 6px rgba(0,0,0,0.1)", // bóng nhẹ
+              }}>
+              <img
+                style={{
+                  height: "100%",
+                  width: "100%",
+                  objectFit: "cover",
+                }}
+                src={`${import.meta.env.VITE_BACKEND_URL}/images/avatar/${
+                  dataDetail.avatar
+                }`}
+                alt=""
+              />
+            </div>
+            <div className="mt-3">
+              <label
+                htmlFor="inputForm"
+                style={{
+                  display: "inline-block",
+                  padding: "10px 18px",
+                  backgroundColor: "#00bfff",
+                  color: "white",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+                  fontSize: "14px",
+                  fontWeight: 500,
+                  transition: "all 0.3s ease",
+                }}
+                onMouseOver={(e) =>
+                  (e.currentTarget.style.backgroundColor = "#1e90ff")
+                }
+                onMouseOut={(e) =>
+                  (e.currentTarget.style.backgroundColor = "#00bfff")
+                }>
+                Đổi ảnh đẹp hơn
+              </label>
+              <input type="file" hidden id="inputForm" />
+            </div>
           </>
         ) : (
           <>

@@ -5,14 +5,14 @@ import { useState } from "react";
 import UpdateModalUser from "./update.user.modal";
 import ViewUserDetail from "./view.user.detail";
 import { deleteUserAPI } from "../../services/api.service";
-import { use } from "react";
+
 const UserTable = (props) => {
   const { dataUsers, loadUser } = props;
   const [isModalUpdate, setModalUpdate] = useState(false);
   const [dataUpdate, setDataUpdate] = useState({});
   const [dataDetail, setDataDetail] = useState(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
-  const [deleteUser, setDeleteUser] = useState({});
+
   const handleDeleteUser = async (id) => {
     const res = await deleteUserAPI(id);
     if (res.data) {
@@ -32,7 +32,6 @@ const UserTable = (props) => {
           <a
             href="#!"
             onClick={() => {
-              setDataDetail(record);
               setDataDetail(record);
               setIsDetailOpen(true);
             }}>

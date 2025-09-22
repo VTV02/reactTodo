@@ -1,11 +1,10 @@
 import { Input, notification, Modal } from "antd";
-import { createUserAPI, updateUserAPI } from "../../services/api.service";
+import { updateUserAPI } from "../../services/api.service";
 import { useEffect, useState } from "react";
 
 const UpdateModalUser = (props) => {
   const [fullName, setFullName] = useState("");
   const [id, setId] = useState("");
-  // const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const { isModalUpdate, setModalUpdate, dataUpdate, setDataUpdate, loadUser } =
     props;

@@ -3,9 +3,9 @@ import { useState } from "react";
 
 const UserForm = () => {
   const [fullName, setFullName] = useState("hoitaolamchi");
-  const [email, setEmail] = useState("lucifer@");
-  const [password, setPassword] = useState("Sn@2025#");
-  const [phone, setPhone] = useState("");
+  // const [email, setEmail] = useState("lucifer@");
+  // const [password, setPassword] = useState("Sn@2025#");
+  // const [phone, setPhone] = useState("");
 
   return (
     <div className="user-form" style={{ margin: "20px 0" }}>

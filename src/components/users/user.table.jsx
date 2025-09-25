@@ -24,6 +24,7 @@ const UserTable = (props) => {
     }
   };
   const columns = [
+    {},
     {
       title: "Id",
       dataIndex: "_id",
@@ -98,6 +99,7 @@ const UserTable = (props) => {
         setDataDetail={setDataDetail}
         isDetailOpen={isDetailOpen}
         setIsDetailOpen={setIsDetailOpen}
+        loadUser={loadUser}
       />
     </>
   );

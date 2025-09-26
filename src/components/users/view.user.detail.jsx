@@ -147,6 +147,32 @@ const ViewUserDetail = (props) => {
                 onChange={(event) => handleOnChangeFile(event)}
               />
             </div>
+            {preview && (
+              <div
+                style={{
+                  marginTop: "10px",
+                  height: "120px",
+                  width: "120px",
+                  border: "2px dashed #00bfff", // viền xanh da trời
+                  borderRadius: "12px", // bo góc
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "#f9f9f9", // nền sáng
+                  overflow: "hidden",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.1)", // bóng nhẹ
+                }}>
+                <img
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    objectFit: "cover",
+                  }}
+                  src={preview}
+                  alt=""
+                />
+              </div>
+            )}
           </>
         ) : (
           <>

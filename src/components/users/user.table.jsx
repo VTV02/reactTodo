@@ -7,7 +7,7 @@ import ViewUserDetail from "./view.user.detail";
 import { deleteUserAPI } from "../../services/api.service";
 
 const UserTable = (props) => {
-  const { dataUsers, loadUser } = props;
+  const { dataUsers, loadUser, current, pageSize, total } = props;
   const [isModalUpdate, setModalUpdate] = useState(false);
   const [dataUpdate, setDataUpdate] = useState({});
   const [dataDetail, setDataDetail] = useState(null);
@@ -24,7 +24,13 @@ const UserTable = (props) => {
     }
   };
   const columns = [
-    {},
+    {
+      title: "STT",
+      render: (_, record, index) => {
+        console.log(">>>Check index: ", index);
+        return <>{index + 1}</>;
+      },
+    },
     {
       title: "Id",
       dataIndex: "_id",
@@ -84,9 +90,31 @@ const UserTable = (props) => {
       ),
     },
   ];
+  const onChange = (pagination, filters, sorter, extra) => {
+    console.log(">>>Check: ", pagination, filters, sorter, extra);
+  };
   return (
     <>
-      <Table columns={columns} dataSource={dataUsers} rowKey={"_id"} />
+      <Table
+        columns={columns}
+        dataSource={dataUsers}
+        rowKey={"_id"}
+        pagination={{
+          current: current,
+          pageSize: pageSize,
+          showSizeChanger: false,
+          total: total,
+          showTotal: (total, range) => {
+            return (
+              <div>
+                {" "}
+                {range[0]}-{range[1]} {total} rows
+              </div>
+            );
+          },
+        }}
+        onChange={onChange}
+      />
       <UpdateModalUser
         setModalUpdate={setModalUpdate}
         isModalUpdate={isModalUpdate}

@@ -44,8 +44,8 @@ const handleUploadFile = (file, folder) => {
   return axios.post(URL_Backend, bodyFormData, config);
 };
 
-const fetchAllUserAPI = () => {
-  const URL_Backend = "/api/v1/user";
+const fetchAllUserAPI = (current, pageSize) => {
+  const URL_Backend = `/api/v1/user?current=${current}&pageSize=${pageSize}`;
   return axios.get(URL_Backend);
 };
 

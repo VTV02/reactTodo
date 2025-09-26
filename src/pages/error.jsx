@@ -1,22 +1,23 @@
 import { useRouteError } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { Result, Button } from "antd";
 
 export default function ErrorPage() {
   const error = useRouteError();
   console.error(error);
 
   return (
-    <div id="error-page">
-      <h1>Oops!</h1>
-      <p>Sorry, an unexpected error has occurred.</p>
-      <p>
-        <i>{error.statusText || error.message}</i>
-      </p>
-      <div>
-        <Link to="/">
-          <span>Back to home page</span>
-        </Link>
-      </div>
-    </div>
+    <Result
+      status="404"
+      title="Oops!"
+      subTitle={error.statusText || error.message}
+      extra={
+        <Button type="primary">
+          <Link to="/">
+            <span> Back Home</span>
+          </Link>
+        </Button>
+      }
+    />
   );
 }

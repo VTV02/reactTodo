@@ -14,7 +14,7 @@ const UsersPage = () => {
   useEffect(() => {
     // render once
     loadUser();
-  }, []);
+  }, [current, pageSize]); //every current !== prev current. It's will be update
   const loadUser = async () => {
     const res = await fetchAllUserAPI(current, pageSize);
     if (res.data) {
@@ -24,6 +24,7 @@ const UsersPage = () => {
       setTotal(res.data.meta.total);
     }
   };
+  console.log(">>>Check pageSize: ", pageSize);
   return (
     <div>
       <UserForm loadUser={loadUser} />
@@ -31,7 +32,7 @@ const UsersPage = () => {
         dataUsers={dataUsers}
         loadUser={loadUser}
         current={current}
-        setDataUsers={setDataUsers}
+        setCurrent={setCurrent}
         pageSize={pageSize}
         setPageSize={setPageSize}
         total={total}

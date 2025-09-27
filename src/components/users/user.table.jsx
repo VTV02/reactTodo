@@ -7,7 +7,16 @@ import ViewUserDetail from "./view.user.detail";
 import { deleteUserAPI } from "../../services/api.service";
 
 const UserTable = (props) => {
-  const { dataUsers, loadUser, current, pageSize, total } = props;
+  const {
+    dataUsers,
+    loadUser,
+    current,
+    setCurrent,
+    pageSize,
+    setPageSize,
+    total,
+    setTotal,
+  } = props;
   const [isModalUpdate, setModalUpdate] = useState(false);
   const [dataUpdate, setDataUpdate] = useState({});
   const [dataDetail, setDataDetail] = useState(null);
@@ -28,7 +37,7 @@ const UserTable = (props) => {
       title: "STT",
       render: (_, record, index) => {
         console.log(">>>Check index: ", index);
-        return <>{index + 1}</>;
+        return <>{index + 1 + (current - 1) * pageSize}</>;
       },
     },
     {
@@ -91,7 +100,18 @@ const UserTable = (props) => {
     },
   ];
   const onChange = (pagination, filters, sorter, extra) => {
-    console.log(">>>Check: ", pagination, filters, sorter, extra);
+    if (pagination && pagination.current) {
+      if (+pagination.current !== +current) {
+        setCurrent(+pagination.current); //"5" ==> 5
+      }
+    }
+
+    // nếu pagesize change
+    if (pagination && pagination.pageSize) {
+      if (+pagination.pageSize !== +pageSize) {
+        setPageSize(+pagination.pageSize); //"5" ==> 5
+      }
+    }
   };
   return (
     <>
@@ -102,7 +122,7 @@ const UserTable = (props) => {
         pagination={{
           current: current,
           pageSize: pageSize,
-          showSizeChanger: false,
+          showSizeChanger: true,
           total: total,
           showTotal: (total, range) => {
             return (

@@ -99,6 +99,7 @@ const UserTable = (props) => {
       ),
     },
   ];
+<<<<<<< HEAD
   const onChange = (pagination, filters, sorter, extra) => {
     if (pagination && pagination.current) {
       if (+pagination.current !== +current) {
@@ -112,6 +113,13 @@ const UserTable = (props) => {
         setPageSize(+pagination.pageSize); //"5" ==> 5
       }
     }
+=======
+  const onChange = (pagination) => {
+    if (pagination && pagination.current)
+      if (+pagination.current !== +current) {
+        setCurrent(+pagination.current); //"5" ==> 5
+      }
+>>>>>>> 18a30ab60aff2e2c77f00e591527c045b9bc653f
   };
   return (
     <>

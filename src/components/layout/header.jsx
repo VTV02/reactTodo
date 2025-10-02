@@ -1,10 +1,11 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import {
   HomeOutlined,
   BookOutlined,
   UserAddOutlined,
   UsergroupAddOutlined,
+  LoginOutlined,
 } from "@ant-design/icons";
 // import "./header.css";
 import { Menu } from "antd";
@@ -30,6 +31,11 @@ const Header = () => {
       label: <Link to={"./books"}>Books</Link>,
       key: "books",
       icon: <BookOutlined />,
+    },
+    {
+      label: <Link to={"./login"}>Login</Link>,
+      key: "login",
+      icon: <LoginOutlined />,
     },
     {
       label: <Link to={"./register"}>Registers</Link>,

@@ -1,15 +1,31 @@
-import { Form, Input, Button, Card } from "antd";
-import { Link } from "react-router-dom";
+import { Form, Input, Button, Card, message } from "antd";
+import { Link, useNavigate } from "react-router-dom";
+import { loginAPI } from "../services/api.service";
+import { useContext, useState } from "react";
+import { AuthContext } from "../components/context/auth.context";
 
 const LoginPage = () => {
-  const onFinish = (values) => {
-    console.log("Success:", values);
+  const [isDone, setIsDone] = useState(false);
+  const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
+  const onFinish = async (values) => {
+    setIsDone(true);
+    try {
+      const res = await loginAPI(values.email, values.password);
+      if (res.data) {
+        message.success("Login Success");
+        localStorage.setItem("access_token", res.data.access_token);
+        setUser(res.data.user);
+        navigate("/");
+      } else {
+        message.error("Login Failed");
+      }
+    } catch (error) {
+      message.error("Something went wrong!");
+    } finally {
+      setIsDone(false);
+    }
   };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
-
   return (
     <div
       style={{
@@ -25,8 +41,7 @@ const LoginPage = () => {
           name="loginForm"
           layout="vertical"
           initialValues={{ remember: true }}
-          onFinish={onFinish}
-          onFinishFailed={onFinishFailed}>
+          onFinish={onFinish}>
           <Form.Item
             label="Email"
             name="email"
@@ -48,7 +63,7 @@ const LoginPage = () => {
                 justifyContent: "space-between",
                 alignItems: "center",
               }}>
-              <Button type="primary" htmlType="submit">
+              <Button type="primary" htmlType="submit" loading={isDone}>
                 Login
               </Button>
               <Link to="/">Go to homepage →</Link>

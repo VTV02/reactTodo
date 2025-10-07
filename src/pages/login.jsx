@@ -53,7 +53,14 @@ const LoginPage = () => {
             label="Password"
             name="password"
             rules={[{ required: true, message: "Please enter password!" }]}>
-            <Input.Password placeholder="Type your password" />
+            <Input.Password
+              placeholder="Type your password"
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  Form.submit();
+                }
+              }}
+            />
           </Form.Item>
 
           <Form.Item>

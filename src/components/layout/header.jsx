@@ -6,6 +6,8 @@ import {
   UserAddOutlined,
   UsergroupAddOutlined,
   LoginOutlined,
+  MoreOutlined,
+  LogoutOutlined,
 } from "@ant-design/icons";
 // import "./header.css";
 import { Menu } from "antd";
@@ -35,11 +37,32 @@ const Header = () => {
       key: "books",
       icon: <BookOutlined />,
     },
-    {
-      label: <Link to={"./login"}>Login</Link>,
-      key: "login",
-      icon: <LoginOutlined />,
-    },
+    ...(!user.id
+      ? [
+          {
+            label: <Link to={"./login"}>Login</Link>,
+            key: "login",
+            icon: <LoginOutlined />,
+          },
+        ]
+      : []),
+    ...(user.id
+      ? [
+          {
+            label: `Welcome ${user.fullName}`,
+            key: "Options",
+            icon: <MoreOutlined />,
+            children: [
+              {
+                label: "Logout",
+                icon: <LogoutOutlined />,
+                key: "logout",
+              },
+            ],
+          },
+        ]
+      : []),
+
     {
       label: <Link to={"./register"}>Registers</Link>,
       key: "registers",

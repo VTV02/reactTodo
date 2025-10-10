@@ -8,28 +8,6 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "./components/context/auth.context";
 import { Spin } from "antd";
 
-// const ParentComponent = (props) => {
-//   console.log(">>>Check props parents: ", props);
-
-//   return (
-//     <>
-//       <div>Parent components</div>
-//       {props.children}
-//     </>
-//   );
-// };
-
-// const ChildComponent = (props) => {
-//   console.log(">>>Check props child: ", props);
-
-//   return (
-//     <>
-//       <div>Children components</div>
-//       {props.children}
-//     </>
-//   );
-// };
-
 function App() {
   const { setUser, isAppLoading, setIsAppLoading } = useContext(AuthContext);
 

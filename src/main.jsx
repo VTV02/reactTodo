@@ -5,7 +5,7 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/login.jsx";
 import UsersPage from "./pages/users.jsx";
-import BooksPage from "./pages/books.jsx";
+import BookLibrary from "./pages/books.jsx";
 import RegisterPage from "./pages/register.jsx";
 import "./styles/global.css";
 import TodoApp from "./components/todo/TodoApp.jsx";
@@ -17,7 +17,7 @@ import PrivateRoute from "./pages/private.route.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>,
+    element: <App />,
     errorElement: <ErrorPage />,
     children: [
       {
@@ -26,15 +26,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/users",
-        element: <UsersPage></UsersPage>,
+        element: <UsersPage />,
       },
       {
         path: "/books",
-        element: <BooksPage></BooksPage>,
-        path: "/books",
         element: (
           <PrivateRoute>
-            <BooksPage />
+            <BookLibrary />
           </PrivateRoute>
         ),
       },

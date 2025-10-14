@@ -79,7 +79,7 @@ const Header = () => {
             icon: <MoreOutlined />,
             children: [
               {
-                label: "Logout",
+                label: <span onClick={() => handleLogout()}>Logout</span>,
                 icon: <LogoutOutlined />,
                 key: "logout",
               },

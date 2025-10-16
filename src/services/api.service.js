@@ -95,10 +95,38 @@ const logoutAPI = () => {
   return axios.post(URL_Backend);
 };
 
+const createBookAPI = (mainText, author, price, quantity) => {
+  const URL_Backend = "/api/v1/book";
+  const data = {
+    mainText: mainText,
+    author: author,
+    price: price,
+    quantity: quantity,
+  };
+  return axios.post(URL_Backend, data);
+};
+
 const fetchBookAPI = (current, pageSize) => {
-  const URL_Backend = `/api/v1/user?current=${current}&pageSize=${pageSize}`;
+  const URL_Backend = `/api/v1/book?current=${current}&pageSize=${pageSize}`;
   return axios.get(URL_Backend);
 };
+
+const deleteBookAPI = (_id) => {
+  const URL_Backend = `/api/v1/book/${_id}`;
+  return axios.delete(URL_Backend);
+};
+
+const updateBookCoverPageAPI = (thumbnail, author, price, quantity) => {
+  const URL_Backend = "/api/v1/book";
+  const data = {
+    thumbnail: thumbnail,
+    author: author,
+    price: price,
+    quantity: quantity,
+  };
+  return axios.put(URL_Backend, data);
+};
+
 export {
   createUserAPI,
   fetchAllUserAPI,
@@ -110,5 +138,8 @@ export {
   loginAPI,
   getAccountAPI,
   logoutAPI,
+  createBookAPI,
   fetchBookAPI,
+  deleteBookAPI,
+  updateBookCoverPageAPI,
 };
